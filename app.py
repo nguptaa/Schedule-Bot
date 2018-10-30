@@ -6,7 +6,7 @@ from pymessenger.bot import Bot
 
 app = Flask(__name__)
 ACCESS_TOKEN = os.environ['EAAesOYFlRUwBAFZAAW3XGpWQgvliso6FYtL0YtBjZAhYVoqIACBBC0vOoPE0ZCCA3cc6eIOmv541LexG06jaKV0EwAPb6pwe8dZAtjb0Na9zzTvgRQW9MZCQQ3zZA1OruowbC6rqMShW8R8G8lt2Ds9v3ZBWWUe7TDqd9QPcrx2WewqeAHeO0mQ']
-VERIFY_TOKEN = os.environ['schedulebot']
+VERIFY_TOKEN = os.environ['schedule_bot']
 bot = Bot(ACCESS_TOKEN)
 
 #We will receive messages that Facebook sends our bot at this endpoint
@@ -47,7 +47,7 @@ def verify_fb_token(token_sent):
 #chooses a random message to send to the user
 def get_message():
     sample_responses = ["You are stunning!", "We're proud of you.",
-                        "Keep on being you!", "We're greatful to know you :)"]
+                        "Keep on being you!", "We're grateful to know you :)"]
     # return selected item to the user
     return random.choice(sample_responses)
 
