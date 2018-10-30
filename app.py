@@ -7,14 +7,13 @@ from pymessenger.bot import Bot
 app = Flask(__name__)
 ACCESS_TOKEN = 'EAAesOYFlRUwBAFZAAW3XGpWQgvliso6FYtL0YtBjZAhYVoqIACBBC0vOoPE0ZCCA3cc6eIOmv541LexG06jaKV0EwAPb6pwe8dZAtjb0Na9zzTvgRQW9MZCQQ3zZA1OruowbC6rqMShW8R8G8lt2Ds9v3ZBWWUe7TDqd9QPcrx2WewqeAHeO0mQ'
 VERIFY_TOKEN = 'schedule_bot'
-bot = Bot(os.environ[ACCESS_TOKEN])
-
+bot = Bot(ACCESS_TOKEN)
 
 
 @app.route("/", methods=['GET', 'POST'])
 def receive_message():
     if request.method == 'GET':
-        if request.args.get("hub.verify_token") == os.environ[VERIFY_TOKEN]:
+        if request.args.get("hub.verify_token") == VERIFY_TOKEN:
             return request.args.get("hub.challenge")
         else:
             return 'Invalid verification token'
