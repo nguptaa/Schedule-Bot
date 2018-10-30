@@ -1,5 +1,5 @@
 # Don't track content of these folders and extensions
-# node_modules/
+node_modules/
 # myenv/
 # package-lock.json
 # package.json
