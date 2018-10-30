@@ -26,6 +26,7 @@ let token = "EAAesOYFlRUwBANI35lObF2Jp5ZC6x3Cj13tIvap4QvtZBYwo312CFsCPmajEibQ93I
 
 app.get('/webhook/', function (req, res) {
     if (req.query['hub.verify_token'] === "schedulebot") {
+        console.log("Verified webhook")
         res.send(req.query['hub.challenge'])
     }
     res.send("Wrong token")
@@ -49,10 +50,10 @@ function sendText(sender, text) {
         text: text
     }
     request({
-        url: "https://graph.facebook.com/v3.2/me/messages?access_token=" + token,
-        // qs: {
-        //     access_token: token
-        // },
+        url: "https://graph.facebook.com/v3.2/me/messages",
+        qs: {
+            access_token: token
+        },
         method: "POST",
         json: {
             recipient: {
