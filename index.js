@@ -49,10 +49,10 @@ function sendText(sender, text) {
         text: text
     }
     request({
-        url: "https://graph.facebook.com/v3.2/me?messages",
-        qs: {
-            access_token: token
-        },
+        url: "https://graph.facebook.com/v3.2/me/messages?access_token=" + token,
+        // qs: {
+        //     access_token: token
+        // },
         method: "POST",
         json: {
             recipient: {
