@@ -49,7 +49,7 @@ function sendText(sender, text) {
         text: text
     }
     request({
-        url: "https://graph.facebook.com/v2.6/me/messages",
+        url: "https://graph.facebook.com/v3.2/me?messages",
         qs: {
             access_token: token
         },
