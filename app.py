@@ -48,7 +48,7 @@ def webhook():
 						creator = list(map(str, messaging_event['message'].get('text').lower().split()))
 						for x in developer:
 							if x in creator:
-								response_sent_text = "Nikhil Gupta created me :D \nhttps://github.com/nguptaa)"
+								response_sent_text = "Nikhil Gupta created me :D \nhttps://github.com/nguptaa"
 								send_message(sender_id, response_sent_text)
 								break
 
@@ -75,9 +75,6 @@ def webhook():
 							index_of_time = times.index(daystime[1]) + 1
 							df = pandas.read_csv('s1.csv')
 							response_sent_text = "You have " + df.loc[index_of_day][index_of_time] + ". :)"
-							send_message(sender_id, response_sent_text)
-						else:
-							response_sent_text = "I didn't understand what you meant. Give me sometime. I'm still learning :)"
 							send_message(sender_id, response_sent_text)
 					else:
 						response_sent_text = "I didn't understand what you meant. Give me sometime. I'm still learning :)"
