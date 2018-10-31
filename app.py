@@ -17,7 +17,7 @@ def receive_message():
         return 'Invalid verification token'
     return 'Hello World', 200
 
-    elif request.method == 'POST':
+    else:
        output = request.get_json()
        for event in output['entry']:
           messaging = event['messaging']
