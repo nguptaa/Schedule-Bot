@@ -1,6 +1,7 @@
 import random
 from flask import Flask, request
 from pymessenger import Bot
+from tabulate import tabulate
 import pandas
 import csv
 
@@ -50,7 +51,8 @@ def webhook():
 						send_message(sender_id, response_sent_text)
 					elif messaging_event['message'].get('text').lower() in timetable:
 						response_sent_text = "Here is your time table :D\n"
-						response_sent_text = pandas.read_csv('s1.csv')
+						df = pandas.read_csv('s1.csv')
+						response_sent_text = tabulate(df, tablefmt = "grid")
 						send_message(sender_id, response_sent_text)
 					elif messaging_event['message'].get('text'):
 						daystime=list(map(str,messaging_event['message'].get('text').lower().split()))
