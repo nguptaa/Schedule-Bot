@@ -9,7 +9,7 @@ bot = Bot(ACCESS_TOKEN)
 
 VERIFY_TOKEN = "schedule_bot"
 
-greetings = ['Hi', 'Hello', 'Hey', "What's up"]
+greetings = ['hi', 'hello', 'hey', "what's up"]
 
 
 @app.route('/', methods=['GET'])
@@ -36,8 +36,8 @@ def webhook():
 				sender_id = messaging_event['sender']['id']
 				# recipient_id = messaging_event['recipient']['id']
 				if messaging_event.get('message'):
-					if messaging_event['message'].get('text') in greetings:
-						response_sent_text = "Welcome to Schedule Chatbot! :D \n Please enter your section :)"
+					if messaging_event['message'].get('text').lower() in greetings:
+						response_sent_text = "Welcome to Schedule Chatbot! :D \nPlease enter your section :)"
 						send_message(sender_id, response_sent_text)
 					# if user sends us a GIF, photo,video, or any other non-text item
 					if messaging_event['message'].get('attachments'):
