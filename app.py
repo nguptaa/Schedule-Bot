@@ -11,6 +11,9 @@ VERIFY_TOKEN = "schedule_bot"
 
 greetings = ['hi', 'hello', 'hey', "what's up"]
 sections = ['s1','section1','s 1','section 1']
+days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+times = ['8AM', '9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM']
+user_day_time=[]
 
 
 @app.route('/', methods=['GET'])
@@ -40,6 +43,21 @@ def webhook():
 					if messaging_event['message'].get('text').lower() in greetings:
 						response_sent_text = "Welcome to Schedule Chatbot! :D \nPlease enter your section :)"
 						send_message(sender_id, response_sent_text)
+					elif messaging_event['message'].get('text').lower() in sections:
+						response_sent_text = "Please enter Day and Time :)"
+						send_message(sender_id, response_sent_text)
+					elif messaging_event['message'].get('text'):
+						for daystime in list(map(str,messaging_event['message'].get('text').lower().split())):
+							if daystime in days:
+								user_day_time.append(daystime)
+							elif daystime in times:
+								user_day_time.append(daystime)
+						if len(user_day_time) == 2:
+							response_sent_text = user_day_time[0] + user_day_time[1]
+							send_message(sender_id, response_sent_text)
+						else:
+							response_sent_text = "Please enter day(space)time in correctly"
+							send_message(sender_id, response_sent_text)
 					else:
 						response_sent_text = "I didn't understand what you meant. Give me sometime. I'm still learning :)"
 						send_message(sender_id,response_sent_text)
