@@ -1,6 +1,8 @@
 import random
 from flask import Flask, request
 from pymessenger import Bot
+import pandas
+import csv
 
 app = Flask("Schedule Bot")
 
@@ -13,7 +15,7 @@ greetings = ['hi', 'hello', 'hey', "what's up"]
 sections = ['s1','section1','s 1','section 1']
 days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
 times = ['8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm']
-user_day_time=[]
+timetable=['timetable','tt','routine','schedule']
 
 
 @app.route('/', methods=['GET'])
@@ -45,6 +47,10 @@ def webhook():
 						send_message(sender_id, response_sent_text)
 					elif messaging_event['message'].get('text').lower() in sections:
 						response_sent_text = "Please enter Day and Time :)"
+						send_message(sender_id, response_sent_text)
+					elif messaging_event['message'].get('text').lower() in timetable:
+						response_sent_text = "Here is your time table :D\n"
+						response_sent_text = pandas.read_csv('s1.csv')
 						send_message(sender_id, response_sent_text)
 					elif messaging_event['message'].get('text'):
 						daystime=list(map(str,messaging_event['message'].get('text').lower().split()))
