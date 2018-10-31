@@ -76,8 +76,8 @@ def webhook():
 					if entity == 'timetable':
 						df = pandas.read_csv('timetable.csv')
 						response = "Here is your time table :D\n\n" + tabulate(df, tablefmt="grid")
-					if entity == 'wit/datetime':
-						response = "Here is {0}".format(str(value))
+					if entity == 'datetime':
+						response = "Here is {}".format(str(value))
 					if response == None:
 						response = "I have no idea what you are saying. I'm still learning :)"
 
