@@ -79,7 +79,7 @@ def webhook():
 					if entity == 'wit/datetime':
 						response = "Here is {0}".format(str(value))
 					if response == None:
-						response = "I have no idea what you are saying!I'm still learning :)"
+						response = "I have no idea what you are saying. I'm still learning :)"
 
 					bot.send_text_message(sender_id, response)
 
