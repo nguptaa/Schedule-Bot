@@ -62,22 +62,24 @@ def webhook():
 							df = pandas.read_csv('s1.csv')
 							response_sent_text = "You have " + df.loc[index_of_day][index_of_time] + ". :)"
 							send_message(sender_id, response_sent_text)
-						else:
-							response_sent_text = "I didn't understand what you meant. Give me sometime. I'm still learning :)"
-							send_message(sender_id, response_sent_text)
+						# else:
+							# response_sent_text = "I didn't understand what you meant. Give me sometime. I'm still learning :)"
+							# send_message(sender_id, response_sent_text)
 					
 					response = None
 
 					entity, value = wit_response(message_text)
 					if entity == 'developer':
-						response = "Nikhil Gupta created me :)".format(str(value))
+						response = "Nikhil Gupta created me :)"
 					if entity == 'user_greetings':
-						response = "Welcome to Schedule Chatbot! :D \nPlease enter your section :)".format(str(value))
+						response = "Welcome to Schedule Chatbot! :D \nPlease enter your section :)"
 					if entity == 'timetable':
 						df = pandas.read_csv('timetable.csv')
-						response = "Here is your time table :D\n" + tabulate(df, tablefmt="grid")
+						response = "Here is your time table :D\n\n" + tabulate(df, tablefmt="grid")
+					if entity == 'wit/datetime':
+						response = "Here is {}".format(str(value))
 					if response == None:
-						response = "I have no idea what you are saying!"
+						response = "I have no idea what you are saying!I'm still learning :)"
 
 					bot.send_text_message(sender_id, response)
 
