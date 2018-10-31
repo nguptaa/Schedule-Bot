@@ -1,6 +1,7 @@
 import random
 from flask import Flask, request
 from pymessenger import Bot
+from NLP import wit_response
 from tabulate import tabulate
 import pandas
 import csv
@@ -44,23 +45,27 @@ def webhook():
 				sender_id = messaging_event['sender']['id']
 				# recipient_id = messaging_event['recipient']['id']
 				if messaging_event.get('message'):
-					if messaging_event['message'].get('text'):
-						creator = list(map(str, messaging_event['message'].get('text').lower().split()))
-						for x in developer:
-							if x in creator:
-								response_sent_text = "Nikhil Gupta created me :D \nhttps://github.com/nguptaa"
-								send_message(sender_id, response_sent_text)
-								break
+					message_text = messaging_event['message'].get('text').lower()
+					if messaging_event['message'].get('attachments'):
+						response_sent_nontext = get_attachments()
+						send_message(sender_id, response_sent_nontext)
+					# if messaging_event['message'].get('text'):
+					# 	creator = list(map(str, message_text.split()))
+					# 	for x in developer:
+					# 		if x in creator:
+					# 			response_sent_text = "Nikhil Gupta created me :D \nhttps://github.com/nguptaa"
+					# 			send_message(sender_id, response_sent_text)
+					# 			break
 
-					if messaging_event['message'].get('text').lower() in greetings:
+					if message_text in greetings:
 						response_sent_text = "Welcome to Schedule Chatbot! :D \nPlease enter your section :)"
 						send_message(sender_id, response_sent_text)
 
-					elif messaging_event['message'].get('text').lower() in sections:
+					elif message_text in sections:
 						response_sent_text = "Please enter Day and Time :)"
 						send_message(sender_id, response_sent_text)
 
-					elif messaging_event['message'].get('text').lower() in timetable:
+					elif message_text in timetable:
 						response_sent_text = "Here is your time table :D\n"
 						send_message(sender_id, response_sent_text)
 						df = pandas.read_csv('timetable.csv')
@@ -68,7 +73,7 @@ def webhook():
 						send_message(sender_id, response_sent_text)
 
 					elif messaging_event['message'].get('text'):
-						daystime=list(map(str,messaging_event['message'].get('text').lower().split()))
+						daystime=list(map(str,message_text.split()))
 
 						if len(daystime) == 2 and daystime[0] in days and daystime[1] in times:
 							index_of_day = days.index(daystime[0])
@@ -79,22 +84,32 @@ def webhook():
 						else:
 							response_sent_text = "I didn't understand what you meant. Give me sometime. I'm still learning :)"
 							send_message(sender_id, response_sent_text)
-					else:
-						response_sent_text = "I didn't understand what you meant. Give me sometime. I'm still learning :)"
-						send_message(sender_id,response_sent_text)
+					
+					response = None
+
+					entity, value = wit_response(message_text)
+					if entity == 'developer':
+						response = "Nikhil Gupta created me :)".format(str(value))
+
+					if response == None:
+						response = "I have no idea what you are saying!"
+
+					bot.send_text_message(sender_id, response)
+
+					# else:
+					# 	response_sent_text = "I didn't understand what you meant. Give me sometime. I'm still learning :)"
+					# 	send_message(sender_id,response_sent_text)
 					# if user sends us a GIF, photo,video, or any other non-text item
-					if messaging_event['message'].get('attachments'):
-						response_sent_nontext = get_attachments()
-						send_message(sender_id, response_sent_nontext)
+					
 	return "ok", 200
 
 
 def get_attachments():
 	return "I've no idea what to do with it :("
 
-def send_message(recipient_id, response):
+def send_message(sender_id, response):
 	# sends user the text message provided via input response parameter
-	bot.send_text_message(recipient_id, response)
+	bot.send_text_message(sender_id, response)
 	return "success"
 
 
