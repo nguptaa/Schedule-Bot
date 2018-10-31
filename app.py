@@ -76,6 +76,9 @@ def webhook():
 							df = pandas.read_csv('s1.csv')
 							response_sent_text = "You have " + df.loc[index_of_day][index_of_time] + ". :)"
 							send_message(sender_id, response_sent_text)
+						else:
+							response_sent_text = "I didn't understand what you meant. Give me sometime. I'm still learning :)"
+							send_message(sender_id, response_sent_text)
 					else:
 						response_sent_text = "I didn't understand what you meant. Give me sometime. I'm still learning :)"
 						send_message(sender_id,response_sent_text)
