@@ -17,7 +17,7 @@ sections = ['s1','section1','s 1','section 1']
 days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
 times = ['8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm']
 timetable=['timetable','tt','routine','schedule']
-developer = ['create', 'created','develop', 'developed']
+developer = ['developer', 'create', 'created','develop', 'developed','developer']
 
 
 @app.route('/', methods=['GET'])
