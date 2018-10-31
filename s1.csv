@@ -1,8 +1,8 @@
 DAYS/TIME,8AM,9AM,10AM,11AM,12PM,1:15PM,2:15PM,3:15PM
-MONDAY,MPMC LAB,MPMC LAB,MPMC LAB,OE,LUNCH BREAK,OSD,DC,TOC
-TUESDAY,DC LAB,DC LAB,DC LAB,OE,LUNCH BREAK,DC,MPMC,TOC
+MONDAY,Microprocessors and Microcontrollers LAB,Microprocessors and Microcontrollers LAB,Microprocessors and Microcontrollers LAB,Open Elective(OE),LUNCH BREAK,Operating Systems Design,Data Communication,Microprocessors and Microcontrollers
+TUESDAY,Data Communication LAB,Data Communication LAB,Data Communication LAB,Open Elective(OE),LUNCH BREAK,Data Communication,Microprocessors and Microcontrollers,Theory of Computaion
 WEDNESDAY,OFF,OFF,OFF,OFF,LUNCH ,OFF,OFF,OFF
-THURSDAY,OS LAB,OS LAB,OS LAB,OFF,LUNCH BREAK,MPMC,TOC,OSD
-FRIDAY,OFF,OFF,OFF ,OE,LUNCH BREAK,TOC,OSD,DC
+THURSDAY,Operating Systems LAB,Operating Systems LAB,Operating Systems LAB,OFF,LUNCH BREAK,Microprocessors and Microcontrollers,Theory of Computaion,Operating Systems Design
+FRIDAY,OFF,OFF,OFF,Open Elective(OE),LUNCH BREAK,Theory of Computaion,Operating Systems Design,Data Communication
 SATURDAY,WEEKEND,WEEKEND,WEEKEND,WEEKEND,WEEKEND,WEEKEND,WEEKEND,WEEKEND
 SUNDAY,WEEKEND,WEEKEND,WEEKEND,WEEKEND,WEEKEND,WEEKEND,WEEKEND,WEEKEND

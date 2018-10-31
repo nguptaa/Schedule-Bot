@@ -47,31 +47,21 @@ def webhook():
 						response_sent_nontext = get_attachments()
 						send_message(sender_id, response_sent_nontext)
 
-					# elif messaging_event['message'].get('text'):
-					# 	daystime=list(map(str,message_text.split()))
-
-					# 	if len(daystime) == 2 and daystime[0] in days and daystime[1] in times:
-					# 		index_of_day = days.index(daystime[0])
-					# 		index_of_time = times.index(daystime[1]) + 1
-					# 		df = pandas.read_csv('s1.csv')
-					# 		response_sent_text = "You have " + df.loc[index_of_day][index_of_time] + ". :)"
-					# 		send_message(sender_id, response_sent_text)
-						# else:
-							# response_sent_text = "I didn't understand what you meant. Give me sometime. I'm still learning :)"
-							# send_message(sender_id, response_sent_text)
-					
 					response = None
 					entity, value = wit_response(message_text)
 
 					if entity == 'developer':
 						response = "Nikhil Gupta created me :)"
 
-					if entity == 'user_greetings':
-						response = "Welcome to Schedule Chatbot! :D \nPlease enter your section :)"
+					if entity == 'S1':
+						response = "Cool! :D \n Enter time :)"
 
 					if entity == 'timetable':
 						df = pandas.read_csv('timetable.csv')
 						response = "Here is your time table :D\n\n" + tabulate(df, tablefmt="grid")
+
+					if entity == 'user_greetings':
+						response = "Welcome to Schedule Chatbot! :D \nPlease enter your section :)"
 
 					if entity == 'datetime':
 						dt = "{0}".format(str(value))
