@@ -6,7 +6,6 @@ from NLP import wit_response
 from tabulate import tabulate
 import pandas
 
-
 app = Flask("Schedule Bot")
 
 ACCESS_TOKEN = "EAAesOYFlRUwBAFZAAW3XGpWQgvliso6FYtL0YtBjZAhYVoqIACBBC0vOoPE0ZCCA3cc6eIOmv541LexG06jaKV0EwAPb6pwe8dZAtjb0Na9zzTvgRQW9MZCQQ3zZA1OruowbC6rqMShW8R8G8lt2Ds9v3ZBWWUe7TDqd9QPcrx2WewqeAHeO0mQ"
@@ -24,7 +23,6 @@ def verify():
 			return "Verification token mismatch", 403
 		return request.args["hub.challenge"], 200
 	return "BUILD SUCCEEDED", 200
-
 
 @app.route('/', methods=['POST'])
 def webhook():
@@ -80,14 +78,8 @@ def webhook():
 						response = "I have no idea what you are saying. I'm still learning :)"
 
 					bot.send_text_message(sender_id, response)
-
-					# else:
-					# 	response_sent_text = "I didn't understand what you meant. Give me sometime. I'm still learning :)"
-					# 	send_message(sender_id,response_sent_text)
-					# if user sends us a GIF, photo,video, or any other non-text item
 					
 	return "ok", 200
-
 
 def get_attachments():
 	return "I've no idea what to do with it :("
@@ -96,7 +88,6 @@ def send_message(sender_id, response):
 	# sends user the text message provided via input response parameter
 	bot.send_text_message(sender_id, response)
 	return "success"
-
 
 if __name__ == "__main__":
 	app.run(port=8000, use_reloader=True)
