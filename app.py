@@ -17,6 +17,7 @@ sections = ['s1','section1','s 1','section 1']
 days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
 times = ['8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm']
 timetable=['timetable','tt','routine','schedule']
+developer = ['create', 'created','develop', 'developed']
 
 
 @app.route('/', methods=['GET'])
@@ -43,20 +44,32 @@ def webhook():
 				sender_id = messaging_event['sender']['id']
 				# recipient_id = messaging_event['recipient']['id']
 				if messaging_event.get('message'):
+					if messaging_event['message'].get('text'):
+						creator = list(map(str, messaging_event['message'].get('text').lower().split()))
+						for x in developer:
+							if x in creator:
+								response_sent_text = "Nikhil Gupta created me :D \nhttps://github.com/nguptaa)"
+								send_message(sender_id, response_sent_text)
+								break
+
 					if messaging_event['message'].get('text').lower() in greetings:
 						response_sent_text = "Welcome to Schedule Chatbot! :D \nPlease enter your section :)"
 						send_message(sender_id, response_sent_text)
+
 					elif messaging_event['message'].get('text').lower() in sections:
 						response_sent_text = "Please enter Day and Time :)"
 						send_message(sender_id, response_sent_text)
+
 					elif messaging_event['message'].get('text').lower() in timetable:
 						response_sent_text = "Here is your time table :D\n"
 						send_message(sender_id, response_sent_text)
 						df = pandas.read_csv('s1.csv')
 						response_sent_text = tabulate(df, tablefmt = "grid")
 						send_message(sender_id, response_sent_text)
+
 					elif messaging_event['message'].get('text'):
 						daystime=list(map(str,messaging_event['message'].get('text').lower().split()))
+
 						if len(daystime) == 2 and daystime[0] in days and daystime[1] in times:
 							index_of_day = days.index(daystime[0])
 							index_of_time = times.index(daystime[1]) + 1
@@ -75,12 +88,6 @@ def webhook():
 						send_message(sender_id, response_sent_nontext)
 	return "ok", 200
 
-
-def get_text():
-	sample_responses = ["You are stunning!", "We're proud of you.",
-						"Keep on being you!", "We're grateful to know you :)"]
-
-	return random.choice(sample_responses)
 
 def get_attachments():
 	return "I've no idea what to do with it :("
