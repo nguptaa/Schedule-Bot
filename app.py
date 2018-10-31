@@ -12,7 +12,7 @@ bot = Bot(ACCESS_TOKEN)
 
 VERIFY_TOKEN = "schedule_bot"
 
-greetings = ['hi', 'hello', 'hey', "what's up"]
+greetings = ['hi', 'hello', 'hey', "what's up",'hy']
 sections = ['s1','section1','s 1','section 1']
 days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
 times = ['8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm']
@@ -59,10 +59,9 @@ def webhook():
 						daystime=list(map(str,messaging_event['message'].get('text').lower().split()))
 						if len(daystime) == 2 and daystime[0] in days and daystime[1] in times:
 							response_sent_text = daystime[0] + daystime[1]
-							
 							send_message(sender_id, response_sent_text)
 						else:
-							response_sent_text = "Please enter day(space)time correctly"
+							response_sent_text = "I didn't understand what you meant. Give me sometime. I'm still learning :)"
 							send_message(sender_id, response_sent_text)
 					else:
 						response_sent_text = "I didn't understand what you meant. Give me sometime. I'm still learning :)"
