@@ -63,7 +63,7 @@ def webhook():
 					elif messaging_event['message'].get('text').lower() in timetable:
 						response_sent_text = "Here is your time table :D\n"
 						send_message(sender_id, response_sent_text)
-						df = pandas.read_csv('s1.csv')
+						df = pandas.read_csv('timetable.csv')
 						response_sent_text = tabulate(df, tablefmt = "grid")
 						send_message(sender_id, response_sent_text)
 
