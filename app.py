@@ -41,6 +41,7 @@ def webhook():
 				sender_id = messaging_event['sender']['id']
 
 				if messaging_event.get('message'):
+					message_text = messaging_event['message'].get('text')
 
 					if messaging_event['message'].get('attachments'):
 						response_sent_nontext = get_attachments()
