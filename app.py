@@ -48,11 +48,11 @@ def webhook():
 						send_message(sender_id, response_sent_text)
 					elif messaging_event['message'].get('text'):
 						daystime=list(map(str,messaging_event['message'].get('text').lower().split()))
-						if len(daystime) == 2 and daystime[0] in days and daystime[1] in time:
+						if len(daystime) == 2 and daystime[0] in days and daystime[1] in times:
 							response_sent_text = daystime[0] + daystime[1]
 							send_message(sender_id, response_sent_text)
 						else:
-							response_sent_text = "Please enter day(space)time in correctly"
+							response_sent_text = "Please enter day(space)time correctly"
 							send_message(sender_id, response_sent_text)
 					else:
 						response_sent_text = "I didn't understand what you meant. Give me sometime. I'm still learning :)"
