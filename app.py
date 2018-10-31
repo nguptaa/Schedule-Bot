@@ -59,7 +59,7 @@ def webhook():
 						daystime=list(map(str,messaging_event['message'].get('text').lower().split()))
 						if len(daystime) == 2 and daystime[0] in days and daystime[1] in times:
 							index_of_day = days.index(daystime[0])
-							index_of_time = times.index(daystime[1])
+							index_of_time = times.index(daystime[1]) + 1
 							df = pandas.read_csv('s1.csv')
 							response_sent_text = "You have " + df.loc[index_of_day][index_of_time] + ". :)"
 							send_message(sender_id, response_sent_text)
