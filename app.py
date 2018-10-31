@@ -8,6 +8,8 @@ bot = Bot(ACCESS_TOKEN)
 
 VERIFY_TOKEN = "schedule_bot"
 
+greetings = ['Hi', 'Hello', 'Hey', "What's up"]
+
 
 @app.route('/', methods=['GET'])
 def verify():
@@ -30,18 +32,38 @@ def webhook():
 			messaging = entry['messaging']
 
 			for messaging_event in messaging:
-
 				sender_id = messaging_event['sender']['id']
-				recipient_id = messaging_event['recipient']['id']
-
+				# recipient_id = messaging_event['recipient']['id']
 				if messaging_event.get('message'):
-					# HANDLE NORMAL MESSAGES HERE
 					if messaging_event['message'].get('text'):
-						# HANDLE TEXT MESSAGES
-						query = messaging_event['message']['text']
-						# ECHO THE RECEIVED MESSAGE
-						bot.send_text_message(sender_id, query)
+						response_sent_text = get_message()
+						send_message(sender_id, response_sent_text)
+					# if user sends us a GIF, photo,video, or any other non-text item
+					if messaging_event['message'].get('attachments'):
+						response_sent_nontext = get_message()
+						send_message(sender_id, response_sent_nontext)
+
+				# if messaging_event.get('message'):
+				# 	# HANDLE NORMAL MESSAGES HERE
+				# 	if messaging_event['message'].get('text'):
+				# 		# HANDLE TEXT MESSAGES
+				# 		query = messaging_event['message']['text']
+				# 		# ECHO THE RECEIVED MESSAGE
+				# 		bot.send_text_message(sender_id, query)
 	return "ok", 200
+
+
+def get_message():
+	sample_responses = ["You are stunning!", "We're proud of you.",
+						"Keep on being you!", "We're grateful to know you :)"]
+
+	return random.choice(sample_responses)
+
+
+def send_message(recipient_id, response):
+	# sends user the text message provided via input response parameter
+	bot.send_text_message(recipient_id, response)
+	return "success"
 
 
 if __name__ == "__main__":
