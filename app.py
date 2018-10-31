@@ -13,12 +13,11 @@ bot = Bot(ACCESS_TOKEN)
 
 VERIFY_TOKEN = "schedule_bot"
 
-greetings = ['hi', 'hello', 'hey', "what's up",'hy']
 sections = ['s1','section1','s 1','section 1']
 days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
 times = ['8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm']
 timetable=['timetable','tt','routine','schedule']
-developer = ['developer', 'create', 'created','develop', 'developed','developer']
+
 
 
 @app.route('/', methods=['GET'])
@@ -49,27 +48,9 @@ def webhook():
 					if messaging_event['message'].get('attachments'):
 						response_sent_nontext = get_attachments()
 						send_message(sender_id, response_sent_nontext)
-					# if messaging_event['message'].get('text'):
-					# 	creator = list(map(str, message_text.split()))
-					# 	for x in developer:
-					# 		if x in creator:
-					# 			response_sent_text = "Nikhil Gupta created me :D \nhttps://github.com/nguptaa"
-					# 			send_message(sender_id, response_sent_text)
-					# 			break
-
-					if message_text in greetings:
-						response_sent_text = "Welcome to Schedule Chatbot! :D \nPlease enter your section :)"
-						send_message(sender_id, response_sent_text)
 
 					elif message_text in sections:
 						response_sent_text = "Please enter Day and Time :)"
-						send_message(sender_id, response_sent_text)
-
-					elif message_text in timetable:
-						response_sent_text = "Here is your time table :D\n"
-						send_message(sender_id, response_sent_text)
-						df = pandas.read_csv('timetable.csv')
-						response_sent_text = tabulate(df, tablefmt = "grid")
 						send_message(sender_id, response_sent_text)
 
 					elif messaging_event['message'].get('text'):
@@ -90,7 +71,11 @@ def webhook():
 					entity, value = wit_response(message_text)
 					if entity == 'developer':
 						response = "Nikhil Gupta created me :)".format(str(value))
-
+					if entity == 'user_greetings':
+						response = "Welcome to Schedule Chatbot! :D \nPlease enter your section :)".format(str(value))
+					if entity == 'timetable':
+						df = pandas.read_csv('timetable.csv')
+						response = "Here is your time table :D\n" + tabulate(df, tablefmt="grid")
 					if response == None:
 						response = "I have no idea what you are saying!"
 
