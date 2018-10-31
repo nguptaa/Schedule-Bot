@@ -1,10 +1,11 @@
 import random
 from flask import Flask, request
+from datetime import datetime
 from pymessenger import Bot
 from NLP import wit_response
 from tabulate import tabulate
 import pandas
-import csv
+
 
 app = Flask("Schedule Bot")
 
@@ -13,12 +14,8 @@ bot = Bot(ACCESS_TOKEN)
 
 VERIFY_TOKEN = "schedule_bot"
 
-sections = ['s1','section1','s 1','section 1']
-days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
-times = ['8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm']
-timetable=['timetable','tt','routine','schedule']
-
-
+days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+times = ['08', '09', '10', '11', '12', '13', '14', '15']
 
 @app.route('/', methods=['GET'])
 def verify():
@@ -42,43 +39,52 @@ def webhook():
 
 			for messaging_event in messaging:
 				sender_id = messaging_event['sender']['id']
-				# recipient_id = messaging_event['recipient']['id']
+
 				if messaging_event.get('message'):
-					message_text = messaging_event['message'].get('text').lower()
+
 					if messaging_event['message'].get('attachments'):
 						response_sent_nontext = get_attachments()
 						send_message(sender_id, response_sent_nontext)
 
-					elif message_text in sections:
-						response_sent_text = "Please enter Day and Time :)"
-						send_message(sender_id, response_sent_text)
+					# elif messaging_event['message'].get('text'):
+					# 	daystime=list(map(str,message_text.split()))
 
-					elif messaging_event['message'].get('text'):
-						daystime=list(map(str,message_text.split()))
-
-						if len(daystime) == 2 and daystime[0] in days and daystime[1] in times:
-							index_of_day = days.index(daystime[0])
-							index_of_time = times.index(daystime[1]) + 1
-							df = pandas.read_csv('s1.csv')
-							response_sent_text = "You have " + df.loc[index_of_day][index_of_time] + ". :)"
-							send_message(sender_id, response_sent_text)
+					# 	if len(daystime) == 2 and daystime[0] in days and daystime[1] in times:
+					# 		index_of_day = days.index(daystime[0])
+					# 		index_of_time = times.index(daystime[1]) + 1
+					# 		df = pandas.read_csv('s1.csv')
+					# 		response_sent_text = "You have " + df.loc[index_of_day][index_of_time] + ". :)"
+					# 		send_message(sender_id, response_sent_text)
 						# else:
 							# response_sent_text = "I didn't understand what you meant. Give me sometime. I'm still learning :)"
 							# send_message(sender_id, response_sent_text)
 					
 					response = None
-
 					entity, value = wit_response(message_text)
+
 					if entity == 'developer':
 						response = "Nikhil Gupta created me :)"
+
 					if entity == 'user_greetings':
 						response = "Welcome to Schedule Chatbot! :D \nPlease enter your section :)"
+
 					if entity == 'timetable':
 						df = pandas.read_csv('timetable.csv')
 						response = "Here is your time table :D\n\n" + tabulate(df, tablefmt="grid")
+
 					if entity == 'datetime':
-						response = "Here is {0}".format(str(value))
-						# response = "datetime detected"
+						dt = "{0}".format(str(value))
+						u = datetime.strptime(dt, '%Y-%m-%dT%H:%M:%S.000+05:30')
+						v = u.strftime('%A %H:%M %Y-%m-%d').split()
+						index_of_day = days.index(v[0])
+						x = v[1][0:2]
+						if x in times:
+							index_of_time = times.index(x) + 1
+							df = pandas.read_csv('s1.csv')
+							response = "You have " + df.loc[index_of_day][index_of_time] + " :)"
+						else:
+							response = "You don't have any class at that time!"
+
 					if response == None:
 						response = "I have no idea what you are saying. I'm still learning :)"
 
