@@ -11,8 +11,8 @@ VERIFY_TOKEN = "schedule_bot"
 
 greetings = ['hi', 'hello', 'hey', "what's up"]
 sections = ['s1','section1','s 1','section 1']
-days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-times = ['8AM', '9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM']
+days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
+times = ['8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm']
 user_day_time=[]
 
 
