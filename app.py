@@ -59,7 +59,7 @@ def webhook():
 						response = "Here is your time table :D\n\n" + tabulate(df, tablefmt="grid")
 
 					if entity == 'user_greetings':
-						response = "Welcome to Schedule Chatbot! :D \nPlease enter your section :)"
+						response = "Welcome to Schedule Chatbot! :D\nPlease enter your section :)"
 
 					if entity == 'datetime':
 						dt = "{0}".format(str(value))
