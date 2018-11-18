@@ -18,7 +18,7 @@ Start Chatting xD
 ![demo image](Images/demo2.jpg?style=demo) -->
 
 
-<img src="Images/demo1.jpg" height="24" width="48">
+<img src="Images/demo1.jpg" height="300" width="100">
 
 ## Authors
 
