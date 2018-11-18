@@ -8,10 +8,10 @@ import pandas
 
 app = Flask("Schedule Bot")
 
-ACCESS_TOKEN = "EAAesOYFlRUwBAFZAAW3XGpWQgvliso6FYtL0YtBjZAhYVoqIACBBC0vOoPE0ZCCA3cc6eIOmv541LexG06jaKV0EwAPb6pwe8dZAtjb0Na9zzTvgRQW9MZCQQ3zZA1OruowbC6rqMShW8R8G8lt2Ds9v3ZBWWUe7TDqd9QPcrx2WewqeAHeO0mQ"
+ACCESS_TOKEN = ""
 bot = Bot(ACCESS_TOKEN)
 
-VERIFY_TOKEN = "schedule_bot"
+VERIFY_TOKEN = ""
 
 days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 times = ['08', '09', '10', '11', '12', '13', '14', '15']
