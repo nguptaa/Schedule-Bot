@@ -14,15 +14,11 @@ Start Chatting xD
 
 ## Some glimpses of schedule bot in action :D
 
-![demo image](Images/demo1.jpg?style=demo)
-![demo image](Images/demo2.jpg?style=demo)
+<!-- ![demo image](Images/demo1.jpg?style=demo)
+![demo image](Images/demo2.jpg?style=demo) -->
 
-img[src$="demo"] {
-  <!-- display:block; -->
-  height=300
-  weight=100
-  <!-- margin: 0 auto; -->
-}
+
+<img src="Images/demo1.jpg" height="24" width="48">
 
 ## Authors
 
