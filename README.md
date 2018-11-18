@@ -17,7 +17,7 @@ Start Chatting xD
 <!-- ![demo image](Images/demo1.jpg?style=demo)
 ![demo image](Images/demo2.jpg?style=demo) -->
 
-<table align="center" border="0">
+<table>
 <tr>
 <td>
 <img src="Images/demo1.jpg" height="500" width="200">
