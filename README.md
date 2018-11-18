@@ -17,16 +17,18 @@ Start Chatting xD
 <!-- ![demo image](Images/demo1.jpg?style=demo)
 ![demo image](Images/demo2.jpg?style=demo) -->
 
-<table>
+<table class="demo">
 <tr>
-<td>
-<img src="Images/demo1.jpg" height="650" width="250">
-</td>
-<td>
-<img src="Images/demo2.jpg" height="650" width="250">
-</td>
+<td><img src="Images/demo1.jpg" height="650" width="250"></td>
+<td><img src="Images/demo2.jpg" height="650" width="250"></td>
 </tr>
 </table>
+
+<style>
+.demo{
+    align=center;
+}
+</style>
 
 
 ## Authors
