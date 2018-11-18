@@ -8,7 +8,7 @@ The client side of this project uses a messenger platform to display results whe
 
 ## Getting Started
 
-You can find the bot by either searching for @urschedulebot in Facebook Messenger app or by following the **[link.](https://m.me/urschedulebot/)**  
+You can find the bot by either searching for @urschedulebot in Facebook Messenger app or by following the **[link.](https://www.messenger.com/t/urschedulebot)**  
 Great the you found the bot !  
 Start Chatting xD
 
@@ -17,7 +17,7 @@ Start Chatting xD
 <!-- ![demo image](Images/demo1.jpg?style=demo)
 ![demo image](Images/demo2.jpg?style=demo) -->
 
-<table style="align:center;">
+<table>
 <tr>
 <td><img src="Images/demo1.jpg" height="650" width="250"></td>
 <td><img src="Images/demo2.jpg" height="650" width="250"></td>
