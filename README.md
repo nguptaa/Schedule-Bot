@@ -8,7 +8,7 @@ The client side of this project uses a messenger platform to display results whe
 
 ## Getting Started
 
-You can find the bot by either searching for @urschedulebot in Facebook Messenger app or by following the [link.] (https://m.me/urschedulebot/)  
+You can find the bot by either searching for @urschedulebot in Facebook Messenger app or by following the **[link.](https://m.me/urschedulebot/)**  
 Great the you found the bot !  
 Start Chatting xD
 
