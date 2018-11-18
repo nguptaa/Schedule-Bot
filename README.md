@@ -20,10 +20,10 @@ Start Chatting xD
 <table>
 <tr>
 <td>
-<img src="Images/demo1.jpg" height="650" width="300">
+<img src="Images/demo1.jpg" height="650" width="250">
 </td>
 <td>
-<img src="Images/demo2.jpg" height="650" width="300">
+<img src="Images/demo2.jpg" height="650" width="250">
 </td>
 </tr>
 </table>
