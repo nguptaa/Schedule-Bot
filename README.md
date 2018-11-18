@@ -14,7 +14,7 @@ Start Chatting xD
 
 ## Some glimpses of schedule bot in action :D
 
-![demo image](Images/demo1.png)![demo image](Images/demo2.png) 
+![demo image](Images/demo1.jpg)![demo image](Images/demo2.jpg) 
 
 ## Authors
 
