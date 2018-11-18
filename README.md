@@ -14,8 +14,7 @@ Start Chatting xD
 
 ## Some glimpses of schedule bot in action :D
 
-![demo image](Images/demo1.jpg){:height="500px" width="200px"}
-![demo image](Images/demo2.jpg) {:height="500px" width="200px"}
+![demo image](Images/demo1.jpg){:height="500px" width="200px"}![demo image](Images/demo2.jpg){:height="500px" width="200px"}
 
 ## Authors
 
